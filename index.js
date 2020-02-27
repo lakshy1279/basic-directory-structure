@@ -9,6 +9,15 @@ const session=require('express-session');
 const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');
 const MongoStore=require('connect-mongo')(session);
+const sassMiddleware=require('node-sass-middleware');
+app.use(sassMiddleware(
+    {
+        src:'./assests/scss',
+        dest:'./assests/css',
+        debug:true,
+        outputStyle:'extended',
+        prefix:'/css'
+}));
 app.use(express.urlencoded());
 app.use(cookieParser());
 app.use(expressLayout);
@@ -18,7 +27,6 @@ app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
 app.set('view engine','ejs');
 app.set('views','./views');
-
 app.use(session(
     {
       name:'codeial',
