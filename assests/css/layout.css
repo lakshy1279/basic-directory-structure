@@ -1,3 +1,5 @@
 body {
+  height: 100%;
   margin: 0px;
-  /* text-align: center; */ }
+  background: #22c1c3;
+  background: linear-gradient(330deg, #22c1c3 0%, #c19c4c 100%); }

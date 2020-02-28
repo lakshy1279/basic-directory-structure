@@ -29,6 +29,7 @@ passport.use(new LocalStrategy(
 ));
 
 //serializing the user to decide which key is to be kept in the cookies
+//The user id (you provide as the second argument of the done function) is saved in the session and is later used to retrieve the whole object via the deserializeUser function.
 passport.serializeUser(function(user,done)
 {
     done(null,user.id);
