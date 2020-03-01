@@ -2,9 +2,11 @@
 
 <section id="feed-post">
 <h4>Posts</h4>
+<% if(locals.user){%>
 <form action="/posts/create" method="POST">
 <textarea name="content" cols="30" rows="3" placeholder="Type Here...."></textarea>
 <input type="submit" value="Post">
+<%}%>
 </form>
 <div id="post-list-container">
     <ul>
@@ -15,6 +17,15 @@
           <br>
           <%= post.user.name%>
         </p>
+        <div id="post-comment">
+            <%if(locals.user){%>
+                <form action="/comments/create" method="POST">
+            <input type="text" name="content" placeholder="type here to add comment.....">
+            <input type="hidden" name="post" value="<%=post._id%>">
+                <input type="submit" value="Add comment"> 
+                </form>
+            <%}%>
+        </div>
       </li>
       
     <%}%>
