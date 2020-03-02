@@ -24,10 +24,34 @@ module.exports.create=function(req,res)
                     return;
                 }
                 console.log(post.comments);
+                //update data in the post
                 post.comments.push(comment);
+                //remember to save after pushing
                 post.save();
                 res.redirect('/');
             });
+        }
+    });
+}
+//delete comment
+module.exports.destroy=function(req,res)
+{
+    Comment.findById(req.params.id,function(err,comment)
+    {
+        //.id is used to convert the object to string
+        if(comment.user==req.user.id)
+        {
+            let postid=comment.post;
+            comment.remove();
+            // The $pull operator removes from an existing array all instances of a value or values that match a specified condition.
+            Post.findByIdAndUpdate(postid, {$pull: {comments:req.params.id}},function(err,post)
+            {
+                return res.redirect('back');
+            });
+        }
+        else
+        {
+            return res.redirect('back');
         }
     });
 }
