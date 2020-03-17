@@ -1,7 +1,7 @@
 const express=require('express');
 //set up cookie
 const cookieParser=require('cookie-parser');
-const port=8000;
+const port=7000;
 const app=express();
 //including layouts
 const expressLayout=require('express-ejs-layouts');
@@ -13,7 +13,9 @@ const session=require('express-session');
 //set library passport.js for authentication
 const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');
+//to store the session in the database
 const MongoStore=require('connect-mongo')(session);
+//include sass middleware
 const sassMiddleware=require('node-sass-middleware');
 app.use(sassMiddleware(
     {
