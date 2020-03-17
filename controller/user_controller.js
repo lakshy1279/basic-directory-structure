@@ -1,12 +1,30 @@
 const User=require('../models/user');
 module.exports.profile=function(req,res)
 {
-    return res.render('user_profile',
+    User.findById(req.params.id,function(err,user)
     {
-      title:"profile"
+        return res.render('user_profile',
+        {
+          title:"profile",
+          profile_user:user
+        });
     });
+    
 }
-
+module.exports.update=function(req,res)
+{
+    if(req.user.id==req.params.id)
+    {
+        User.findByIdAndUpdate(req.params.id,req.body,function(err,user)
+        {
+            return res.redirect('back');
+        });
+    }
+    else
+    {
+        return res.status(401).send('Unauthorized');
+    }
+}
 //render sign up page
 module.exports.signup=function(req,res)
 {
@@ -27,8 +45,8 @@ module.exports.signin=function(req,res)
     {
         return res.redirect('/users/profile');
     }
-    console.log(req.cookies);
-    res.cookie('user_id',25);
+    // console.log(req.cookies);
+    // res.cookie('user_id',25);
     return res.render('user_sign_in',
     {
         title:"Codeial|sign in"

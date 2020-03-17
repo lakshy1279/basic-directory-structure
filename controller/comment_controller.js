@@ -39,7 +39,7 @@ module.exports.destroy=function(req,res)
     Comment.findById(req.params.id,function(err,comment)
     {
         //.id is used to convert the object to string
-        if(comment.user==req.user.id)
+        if(comment.user==req.user.id||req.user.id==comment.post)
         {
             let postid=comment.post;
             comment.remove();

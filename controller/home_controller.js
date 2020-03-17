@@ -1,4 +1,5 @@
 const Post=require('../models/post');
+const User=require('../models/user');
 module.exports.home=function(req,res)
 {
   // Post.find({},function(err,post)
@@ -18,10 +19,15 @@ module.exports.home=function(req,res)
        }
      }).exec(function(err,post)
    {
-    return res.render('home',
+     User.find({},function(err,users)
+     {
+      return res.render('home',
       {
         title:"Codeial|home",
-        posts:post
+        posts:post,
+        all_user:users
       });
+     });
+    
    });  
 }
