@@ -11,18 +11,33 @@ module.exports.home=async function(req,res)
   //   });
   // });
   // Population is the process of automatically replacing the specified paths in the document with document(s) from other collection(s). 
-   let posts=await Post.find({}).populate('user').populate(
-     {
-       path:'comments',
-       populate:{
-         path:'user'
-       }
-     })
-     let users=await User.find({});
-     return res.render('home',
+   try{
+    let posts=await Post.find({}).populate('user').populate(
       {
-        title:"Codeial|home",
-        posts:posts,
-        all_users:users
+        path:'comments',
+        populate:{
+          path:'user'
+        }
       });
+      let users=await User.find({});
+      return res.render('home',
+       {
+         title:"Codeial|home",
+         posts:posts,
+         all_users:users
+       });
+   }catch(err)
+   {
+     console.log('Error',err);
+     return;
+   }
 }
+// module.exports.actionName = function(req, res){}
+
+
+// using then
+// Post.find({}).populate('comments').then(function());
+
+// let posts = Post.find({}).populate('comments').exec();
+
+// posts.then()

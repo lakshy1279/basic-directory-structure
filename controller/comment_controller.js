@@ -1,57 +1,54 @@
 const Comment=require('../models/comment');
 const Post=require('../models/post');
 
-module.exports.create=function(req,res)
+module.exports.create=async function(req,res)
 {
-    Post.findById(req.body.post,function(err,post)
-    {
-        if(err)
-        {
-            console.log("error in finding user");
-            return;
-        }
+    try{
+        let post=await Post.findById(req.body.post);
         if(post)
         {
-            Comment.create({
+            let comment=await Comment.create({
                 content:req.body.content,
                 post:req.body.post,
                 user:req.user._id
-            },function(err,comment)
-            {
-                if(err)
-                {
-                    console.log("comment not post");
-                    return;
-                }
-                console.log(post.comments);
+            });
+             req.flash('success','comment created');
                 //update data in the post
-                post.comments.push(comment);
+             post.comments.push(comment);
                 //remember to save after pushing
                 post.save();
                 res.redirect('/');
-            });
         }
-    });
+    }catch(err)
+    {
+        req.flash('error',err);
+        return res.redirect('back');
+    }
 }
 //delete comment
-module.exports.destroy=function(req,res)
+module.exports.destroy=async function(req,res)
 {
-    Comment.findById(req.params.id,function(err,comment)
-    {
+    try{
+        let comment=await Comment.findById(req.params.id);
         //.id is used to convert the object to string
         if(comment.user==req.user.id||req.user.id==comment.post)
         {
             let postid=comment.post;
             comment.remove();
+            req.flash('success','comment deleted');
             // The $pull operator removes from an existing array all instances of a value or values that match a specified condition.
-            Post.findByIdAndUpdate(postid, {$pull: {comments:req.params.id}},function(err,post)
-            {
-                return res.redirect('back');
-            });
+            let post=await Post.findByIdAndUpdate(postid, {$pull: {comments:req.params.id}});
+            return res.redirect('back');
         }
         else
         {
+            req.flash('error','you are not allow to delete this post');
             return res.redirect('back');
         }
-    });
+    }catch(err)
+    {
+        req.flash('error',err);
+        return res.redirect('back');
+    }
+    
 }
