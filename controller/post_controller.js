@@ -8,8 +8,10 @@ module.exports.create=async function(req,res)
                 content:req.body.content,
               user:req.user._id
             });
+            // Post.find({}).populate('user')
             if(req.xhr)
-            {
+            { 
+                post = await post.populate('user', 'name').execPopulate();
                 return res.status(200).json({
                     data:{
                         post:post
@@ -33,6 +35,16 @@ module.exports.destroy=async function(req,res)
             {
                 post.remove();
              await Comment.deleteMany({post:req.params.id});
+             if(req.xhr)
+             {
+                 return res.status(200).json(
+                     {
+                         data:{
+                             post_id:req.params.id
+                           },
+                         message:"post deleted successfully"
+                     });
+             }
              req.flash('success','Post ans assosciated Comment deleted!');
              return res.redirect('back');
             }

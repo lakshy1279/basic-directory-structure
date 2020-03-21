@@ -12,7 +12,7 @@ module.exports.home=async function(req,res)
   // });
   // Population is the process of automatically replacing the specified paths in the document with document(s) from other collection(s). 
    try{
-    let posts=await Post.find({}).populate('user').populate(
+    let posts=await Post.find({}).sort('-createdAt').populate('user').populate(
       {
         path:'comments',
         populate:{
