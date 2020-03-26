@@ -3,7 +3,7 @@
 // this class would be initialized for every post on the page
 // 1. When the page loads
 // 2. Creation of every post dynamically via AJAX
-class postComments
+class PostComments
 {
     constructor(postId)
     {
@@ -18,5 +18,27 @@ class postComments
         //     self.deleteComment($(this));
         // })
     }
+    createComment(postId)
+    {
+        let pself=this;
+        this.newCommentForm.submit(function(e)
+        {
+            e.preventDefault();
+            let self=this;
 
+            $.ajax({
+               type:'post',
+               url:'/comments/create',
+               data:$(self).serialize(),
+               success:function(data)
+               {
+                  console.log(data);
+               },
+               error:function (error)
+               {
+                console.log(error.responseText);
+               }
+            });
+        });
+    }
 }

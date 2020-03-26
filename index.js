@@ -6,6 +6,8 @@ const app=express();
 //including layouts
 const expressLayout=require('express-ejs-layouts');
 app.use(expressLayout);
+//require path
+const path=require('path');
 //get database
 const db=require('./config/mongoose');
 //require session
@@ -32,6 +34,8 @@ app.use(express.urlencoded());
 //use cookie parser to read and write to cookie
 app.use(cookieParser());
 app.use(express.static('./assests'));
+//make the upload path available to the browser
+app.use('/uploads',express.static(__dirname+'/uploads'));
 //extract styles and scripts from subpages into layout
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);

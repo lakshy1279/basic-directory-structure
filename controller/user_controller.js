@@ -1,4 +1,6 @@
 const User=require('../models/user');
+const fs=require('fs');
+const path=require('path');
 module.exports.profile=function(req,res)
 {
     User.findById(req.params.id,function(err,user)
@@ -11,20 +13,51 @@ module.exports.profile=function(req,res)
     });
     
 }
-module.exports.update=function(req,res)
+module.exports.update=async function(req,res)
 {
+    // if(req.user.id==req.params.id)
+    // {
+    //     User.findByIdAndUpdate(req.params.id,req.body,function(err,user)
+    //     {
+    //         req.flash('success','Updated!');
+    //         return res.redirect('back');
+    //     });
+    // }
+    // else
+    // {
+    //     req.flash('error','Unauthorized')
+    //     return res.status(401).send('Unauthorized');
+    // }
     if(req.user.id==req.params.id)
     {
-        User.findByIdAndUpdate(req.params.id,req.body,function(err,user)
-        {
-            req.flash('success','Updated!');
-            return res.redirect('back');
-        });
-    }
-    else
-    {
-        req.flash('error','Unauthorized')
-        return res.status(401).send('Unauthorized');
+        try{
+             let user=await User.findById(req.params.id);
+             User.uploadedAvatar(req,res,function(err)
+             {
+                 if(err)
+                 {
+                     console.log('******Multer Error',err);
+                 }
+                 user.name=req.body.name;
+                 user.email=req.body.email;
+                 if(req.file)
+                 {   
+                     if(user.avatar)
+                     {  
+                            fs.unlinkSync(path.join(__dirname,'..',user.avatar));
+                     }
+                    
+                     //this is saving path of the uploaded file into the user avatr
+                     user.avatar=User.avatarpath+ '/' + req.file.filename;
+                 }
+                 user.save();
+                  return res.redirect('back');
+                //  console.log(req.file);
+             })
+        }catch(err){
+            req.flash('error',err);
+         return res.redirect('back');
+        }
     }
 }
 //render sign up page

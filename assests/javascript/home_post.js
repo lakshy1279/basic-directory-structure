@@ -5,7 +5,7 @@
         let newPostForm=$('#new-post-form');
          newPostForm.submit(function(e)
         {
-            e.preventDefault();
+           e.preventDefault();
            $.ajax({
             type:'post',
             url:'/posts/create',
@@ -16,7 +16,7 @@
                 $('#posts-list-container>ul').prepend(newPost);
                 deletePost($(' .delete-post-button',newPost));
                 //calls the create comment class
-                 new postComments(data.data.post._id);
+                 new PostComments(data.data.post._id);
                 //doubt in this how request is passed
                 new Noty({
                   theme: 'relax',

@@ -11,6 +11,7 @@ module.exports.create=async function(req,res)
             // Post.find({}).populate('user')
             if(req.xhr)
             { 
+                // .exec() is used with a query while .execPopulate() is used with a document
                 post = await post.populate('user', 'name').execPopulate();
                 return res.status(200).json({
                     data:{
