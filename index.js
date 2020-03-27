@@ -15,6 +15,8 @@ const session=require('express-session');
 //set library passport.js for authentication
 const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');
+const passportJWT=require('./config/passport-jwt-strategy');
+const passportGoogle=require('./config/passport-google-oauth2-strategy');
 //to store the session in the database
 const MongoStore=require('connect-mongo')(session);
 //include sass middleware
