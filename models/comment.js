@@ -16,7 +16,13 @@ const CommentSchema=new mongoose.Schema(
             // To specify a type of ObjectId, use Schema.Types.ObjectId in your declaration.
             type:mongoose.Schema.Types.ObjectId,
             ref:'Post'
-        }
+        },
+        likes:[
+            {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Like'
+            },
+        ]
     },{timestamps:true}
 );
 
