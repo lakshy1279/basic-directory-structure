@@ -1,5 +1,6 @@
 const Post=require('../models/post');
 const Comment=require('../models/comment');
+const Like=require('../models/like');
 module.exports.create=async function(req,res)
 {
     try{
@@ -35,7 +36,12 @@ module.exports.destroy=async function(req,res)
         if(post.user==req.user.id)
             {
                 post.remove();
+                console.log(post);
              await Comment.deleteMany({post:req.params.id});
+             //doubt in this why it not work with req.param.id
+             await Like.deleteMany({likeable:post,onModel:'Post'});
+            //  The $in operator selects the documents where the value of a field equals any value in the specified array.
+             await Like.deleteMany({_id:{$in:post.comments}});
              if(req.xhr)
              {
                  return res.status(200).json(

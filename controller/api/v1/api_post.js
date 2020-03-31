@@ -21,10 +21,10 @@ module.exports.destroy=async function(req,res)
         if(post.user==req.user.id)
              {
                 post.remove();
-             await Comment.deleteMany({post:req.params.id});
-             return res.json(200,{
+                await Comment.deleteMany({post:req.params.id});
+               return res.json(200,{
                  message:"post and assosciated comment deleted successfully"
-             });
+               });
             }
             else
             {

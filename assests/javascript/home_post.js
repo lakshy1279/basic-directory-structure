@@ -16,7 +16,9 @@
                 $('#posts-list-container>ul').prepend(newPost);
                 deletePost($(' .delete-post-button',newPost));
                 //calls the create comment class
-                 new PostComments(data.data.post._id);
+                  new PostComments(data.data.post._id);
+                 //enable the functionality of toggle like on new post
+                 new ToggleLike(' .toggle-like-button',newPost);
                 //doubt in this how request is passed
                 new Noty({
                   theme: 'relax',
@@ -46,9 +48,15 @@
             ${post.content}
             <br>
             ${post.user.name}
+            <br>
+            <small>
+            <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
+               0Likes
+             </a>
+            </small>
           </p>
           <div id="post-comments">
-                  <form action="/comments/create" method="POST" >
+                  <form action="/comments/create" method="POST" id="post-${post._id}-comments-form">
               <input type="text" name="content" placeholder="type here to add comment....." required>
               <input type="hidden" name="post" value="${post._id }">
                   <input type="submit" value="Add comment"> 
@@ -95,7 +103,8 @@
           // post-5e7642dcfb46882c8cc36066-before split
           //5e7642dcfb46882c8cc36066-after split
           let PostId=self.prop('id').split("-")[1];
-          console.log(PostId);
+           new PostComments(PostId);
+          // console.log(PostId);
         })
       }
       convertPostToAjax();

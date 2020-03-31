@@ -31,3 +31,11 @@
 <!-- importing this script for creating the comments -->
 <script src="/javascript/home_comment.js"></script>
 <script src="/javascript/home_post.js"></script>
+<script src="/javascript/toggle_like.js"></script>
+
+<script>
+  $(' .toggle-like-button').each(function()
+  {
+     new ToggleLike(this);
+  });
+</script>

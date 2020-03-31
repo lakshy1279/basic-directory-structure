@@ -6,4 +6,5 @@ queue.process('emails',function(job,done)
 {
   console.log('email worker is processing a job',job.data);
   commentMailer.newComment(job.data);
+  done();
 });
