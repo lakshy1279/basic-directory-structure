@@ -1,16 +1,21 @@
 const User=require('../models/user');
 const fs=require('fs');
 const path=require('path');
-module.exports.profile=function(req,res)
+module.exports.profile= async function(req,res)
 {
-    User.findById(req.params.id,function(err,user)
+    try{
+       let user= await User.findById(req.params.id);
+       return res.render('user_profile',
+       {
+         title:"profile",
+         profile_user:user
+       });
+    }catch(err)
     {
-        return res.render('user_profile',
-        {
-          title:"profile",
-          profile_user:user
-        });
-    });
+        req.flash('error',err);
+        return res.redirect('back');
+    }
+    
     
 }
 module.exports.update=async function(req,res)

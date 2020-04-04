@@ -14,5 +14,13 @@
             <!-- else show the user details -->
             <p><%= profile_user.name%></p>
             <p><%= profile_user.email%></p>
+            <a class="friend" href="/friend/add/?from=<%=profile_user.id%>&to=<%=user.id%>">ADD Friend</a>
          <% }%>
+<script src="/javascript/friend.js"></script>
+<script>
+        $(' .friend').each(function()
+  {
+     new Friend(this);
+  });
+</script>
       

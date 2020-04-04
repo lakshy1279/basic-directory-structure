@@ -8,6 +8,7 @@ router.use('/posts',require('./post'));
 router.use('/comments',require('./comment'));
 router.use('/api',require('./api'));
 router.use('/likes',require('./like'));
+router.use('/friend',require('./friend'));
 console.log('router loaded');
 
 module.exports=router;

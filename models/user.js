@@ -20,7 +20,11 @@ const userSchema=new mongoose.Schema(
     },
     avatar:{
         type:String
-    }
+    },
+    friend:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Friendship'
+    }]
 },{
     //The {timestamps: true} option creates a createdAt and updatedAt field on our models that contain timestamps which will get automatically updated when our model changes.
     timestamps:true

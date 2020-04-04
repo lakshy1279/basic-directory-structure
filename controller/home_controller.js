@@ -23,11 +23,19 @@ module.exports.home=async function(req,res)
         }
       }).populate('likes');
       let users=await User.find({});
+      let user=await User.findById(req.user.id).populate({
+        path:'friend',
+        populate:{
+          path:'from_user'
+        }
+      }).exec();
+      // console.log(user.friend);
       return res.render('home',
        {
          title:"Codeial|home",
          posts:posts,
-         all_users:users
+         all_users:users,
+         friends:user.friend
        });
    }catch(err)
    {
