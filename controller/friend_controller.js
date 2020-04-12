@@ -6,8 +6,8 @@ module.exports.addfriend=async function(req,res)
         
         let fromUser=await User.findById(req.query.from);
         let ToUser=await User.findById(req.query.to);
-        console.log(fromUser);
-        console.log(ToUser);
+        // console.log(fromUser);
+        // console.log(ToUser);
         let friend=await Friend.create({
             from_user:fromUser,
             to_user:ToUser
@@ -16,10 +16,17 @@ module.exports.addfriend=async function(req,res)
         fromUser.save();
         ToUser.friend.push(friend._id);
         ToUser.save();
-    //  ToUser=await ToUser.populate('friend').execPopulate();
+        ToUser=await ToUser.populate(
+            {
+                path:'friend',
+                populate:{
+                  path:'from_user'
+                }
+            }
+        ).execPopulate();
         return res.json(200,{
             data:{
-                user:ToUser
+                user:ToUser.friend
             },
             message:"sucessful"
         })

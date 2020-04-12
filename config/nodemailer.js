@@ -1,17 +1,8 @@
 const nodemailer=require('nodemailer');
 const ejs=require('ejs');
 const path=require('path');
-
-let transporter=nodemailer.createTransport({
-    service:'gmail',
-    host:'smtp.gmail.com',
-    port:587,
-    secure:false,
-    auth:{
-        user:'luckyron1279@gmail.com',
-        pass:'Lakshy@12'
-    }
-});
+const env=require('./environment');
+let transporter=nodemailer.createTransport(env.smtp);
 transporter.verify(function(error, success) {
     if (error) {
       console.log(error);
