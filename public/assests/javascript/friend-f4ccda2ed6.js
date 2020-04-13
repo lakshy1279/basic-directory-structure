@@ -1,0 +1,1 @@
+class Friend{constructor(e){this.Friend=e,this.createFriend()}createFriend(){$(this.Friend).click((function(e){e.preventDefault();$.ajax({type:"post",url:$(this).attr("href")}).done((function(e){console.log(e)})).fail((function(e){console.log("error in creating a friend")}))}))}}

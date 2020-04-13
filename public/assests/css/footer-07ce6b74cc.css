@@ -1,0 +1,28 @@
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+  background-color: #e5ee69;
+  margin-top: 80%;
+  padding: 5px; }
+
+span {
+  display: flex;
+  flex-wrap: wrap; }
+  span p {
+    font-style: oblique;
+    font-weight: 700;
+    font-size: 1.4rem; }
+
+ul {
+  display: flex; }
+  ul li a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-style: oblique;
+    margin-left: 3px; }
+  ul li a:hover {
+    color: #ce6868; }

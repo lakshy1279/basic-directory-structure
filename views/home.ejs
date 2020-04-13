@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="<%= assestPath('css/home.css') %>">
 <div id="home-container">
 <section id="feed-post">
 <h4>Posts</h4>
@@ -43,9 +43,9 @@
  <%- include('_chat_box') -%>
 </div>
 <!-- importing this script for creating the comments -->
-<script src="/javascript/home_comment.js"></script>
-<script src="/javascript/home_post.js"></script>
-<script src="/javascript/toggle_like.js"></script>
+<script src="<%=assestPath('javascript/home_comment.js') %>"></script>
+<script src="<%=assestPath('javascript/home_post.js') %>"></script>
+<script src="<%=assestPath('javascript/toggle_like.js') %>"></script>
 <script>
   $(' .toggle-like-button').each(function()
   {
@@ -53,7 +53,7 @@
   });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-<script src="/javascript/chat_engine.js"></script>
+<script src="<%= assestPath('javascript/chat_engine.js') %>"></script>
 <% if(locals.user){%>
 <script>
     new ChatEngine('user-chat-box','<%= locals.user.email%>');

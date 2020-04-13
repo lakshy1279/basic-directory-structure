@@ -1,3 +1,4 @@
+// The npm init command creates a package.json file for your project which stores information about the project, like the dependencies used in the project (Gulp is an example of a dependency).
 const express=require('express');
 const env=require('./config/environment');
 const logger=require('morgan');
@@ -5,6 +6,7 @@ const logger=require('morgan');
 const cookieParser=require('cookie-parser');
 const port=7000;
 const app=express();
+require('./config/view-helper')(app);
 //including layouts
 const expressLayout=require('express-ejs-layouts');
 app.use(expressLayout);
