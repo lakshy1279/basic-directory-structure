@@ -46,7 +46,7 @@ app.use(sassMiddleware(
 }));
 }
 //encode data of post request
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: false}));
 //use cookie parser to read and write to cookie
 app.use(cookieParser());
 app.use(express.static(env.asset_path));

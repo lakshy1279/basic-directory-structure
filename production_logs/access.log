@@ -152,3 +152,5 @@
 ::1 - - [13/Apr/2020:05:07:45 +0000] "GET /users/profile/5e9099fa39885c3f8466d14e HTTP/1.1" 304 - "http://localhost:7000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
 ::1 - - [13/Apr/2020:05:07:45 +0000] "GET /javascript/friend.js HTTP/1.1" 404 159 "http://localhost:7000/users/profile/5e9099fa39885c3f8466d14e" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
 ::1 - - [13/Apr/2020:05:07:45 +0000] "GET /javascript/friend.js HTTP/1.1" 404 159 "http://localhost:7000/users/profile/5e9099fa39885c3f8466d14e" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
+::1 - - [16/Apr/2020:05:03:40 +0000] "GET / HTTP/1.1" 200 3169 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
+::1 - - [16/Apr/2020:05:03:42 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost:7000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
