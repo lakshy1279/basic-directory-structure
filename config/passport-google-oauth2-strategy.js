@@ -26,7 +26,7 @@ function(accessToken,refreshToken,profile,done){
              return done(null,user);
         }else
         {
-            //if not found, create the user and set it as req.user
+            // if not found, create the user and set it as req.user
             User.create({
                 name:profile.displayName,
                 email:profile.emails[0].value,

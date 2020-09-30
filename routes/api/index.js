@@ -1,7 +1,7 @@
-const express=require('express');
+const express = require("express");
 
-const router=express.Router();
+const router = express.Router();
 
-router.use('/v1',require('./v1'));
-router.use('/v2',require('./v2'));
-module.exports=router;
+router.use("/v1", require("./v1"));
+// router.use("/v2", require("./v2"));
+module.exports = router;
