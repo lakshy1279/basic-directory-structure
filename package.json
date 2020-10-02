@@ -13,7 +13,6 @@
   ],
   "author": "lakshy pachory",
   "license": "ISC",
-  "proxy": "http://localhost:7000",
   "dependencies": {
     "acorn": "^7.1.1",
     "connect-flash": "^0.1.1",
