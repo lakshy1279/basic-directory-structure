@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 const env = require("./environment");
-mongoose.connect(
-  `mongodb+srv://anshita:pipdIq5fqHCYrgO7@cluster0.adtj0.mongodb.net/${env.db}?retryWrites=true&w=majority
-  `,
-  { useNewUrlParser: true }
-);
+mongoose.connect(env.Mongo_Db_Url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const db = mongoose.connection;
 

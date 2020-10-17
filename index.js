@@ -4,7 +4,7 @@ const env = require("./config/environment");
 const logger = require("morgan");
 //set up cookie
 const cookieParser = require("cookie-parser");
-const port = 7000;
+const port = process.env.PORT || 7000;
 const app = express();
 const cors = require("cors");
 app.use(cors());

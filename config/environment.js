@@ -28,6 +28,8 @@ const development = {
     "697420632189-08hcjfqd9h4vggo52svrj0f5o7v2flo2.apps.googleusercontent.com",
   google_client_secret: "4h0c4P5T3ocPjrOUWmuur5-L",
   google_callback_url: "http://localhost:7000/users/auth/google/callback",
+  Mongo_Db_Url:
+    "mongodb+srv://anshita:pipdIq5fqHCYrgO7@cluster0.adtj0.mongodb.net/codeial_production?retryWrites=true&w=majority",
   jwt_secret: "codeial",
   morgan: {
     mode: "dev",
@@ -53,6 +55,7 @@ const production = {
   google_client_id: process.env.CODEIAL_GOOGLE_CLIENT_ID,
   google_client_secret: process.env.CODEIAL_GOOGLE_CLIENT_SECRET,
   google_callback_url: process.env.CODEIAL_GOOGLE_CALLBACK_URL,
+  Mongo_Db_Url: process.env.Mongo_Db_Url,
   jwt_secret: process.env.Jwt_Secret,
   morgan: {
     mode: "combined",
