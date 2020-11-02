@@ -1,52 +1,63 @@
 <html>
-
-<head>
-    <title>
-        <%= title %>
-    </title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+  <head>
+    <title><%= title %></title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="<%= assestPath('css/layout.css') %>">
-    <link rel="stylesheet" type="text/css" href="<%= assestPath('css/header.css')%>">
-    <link rel="stylesheet" type="text/css" href="<%= assestPath('css/footer.css')%>">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="<%= assestPath('css/layout.css') %>"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="<%= assestPath('css/header.css')%>"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="<%= assestPath('css/footer.css')%>"
+    />
     <%- style %>
-</head>
+  </head>
 
-<body>
-    <div id="header">
-        <%-include('_header'); %>
-    </div>
+  <body>
+    <div id="header"><%-include('_header'); %></div>
     <%- body %>
-    <div id="footer">
-        <%-include('_footer'); %>
-    </div>
+    <div id="footer"><%-include('_footer'); %></div>
     <%- script %>
     <script>
-        <% if (flash.success && flash.success.length > 0) {%>
-            new Noty({
-                theme: 'relax',
-                text: "<%= flash.success %>",
-                type: 'success',
-                layout: 'topRight',
-                timeout: 1500
-                
-            }).show();    
-        <%} %>
+      <% if (flash.success && flash.success.length > 0) {%>
+          new Noty({
+              theme: 'relax',
+              text: "<%= flash.success %>",
+              type: 'success',
+              layout: 'topRight',
+              timeout: 1500
 
-        <% if (flash.error && flash.error.length > 0) {%>
-            new Noty({
-                theme: 'relax',
-                text: "<%= flash.error %>",
-                type: 'error',
-                layout: 'topRight',
-                timeout: 1500
-                
-            }).show();    
-        <%} %>
+          }).show();
+      <%} %>
+
+      <% if (flash.error && flash.error.length > 0) {%>
+          new Noty({
+              theme: 'relax',
+              text: "<%= flash.error %>",
+              type: 'error',
+              layout: 'topRight',
+              timeout: 1500
+
+          }).show();
+      <%} %>
     </script>
-</body>
-
+  </body>
 </html>

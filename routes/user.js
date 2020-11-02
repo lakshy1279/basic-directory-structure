@@ -27,4 +27,5 @@ router.get(
   passport.authenticate("google", { failureRedirect: "/users/signin" }),
   userController.createSession
 );
+router.get("/forgot");
 module.exports = router;
